@@ -1,0 +1,246 @@
+*{ margin: 0; padding: 0; }
+
+@font-face { font-family: GalaxiePolarisCondensed-Book; src: url('../fonts/GalaxiePolarisCondensed-Book.otf'); }
+@font-face { font-family: GalaxiePolarisCondensed-Bold; font-weight: bold; src: url('../fonts/GalaxiePolarisCondensed-Bold.otf'); }
+@font-face { font-family: GalaxiePolarisCondensed-Light; font-weight: bold; src: url('../fonts/GalaxiePolarisCondensed-Light.otf'); }
+@font-face { font-family: GalaxiePolarisCondensed-Med; font-weight: bold; src: url('../fonts/GalaxiePolarisCondensed-Medium.otf'); }
+
+body{
+
+/*width: 1240px;*/
+
+}
+
+#stage{
+	position: relative;
+/*	height: 800px;
+	width: 1280px;*/
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	position: absolute;
+	top: 0; left: 0;
+/*	border: thin solid lime;*/
+}
+
+#topbar{
+	width: 100%;
+	height: 170px;
+}
+
+	#steps{
+		width: 100%;
+		height: 70px;
+		/*background: rgba(128, 0, 0, 0.6);*/
+		background-color: #333;
+	}
+
+	#step-detail{
+		width:100%;
+		height: 100px;
+		background-color: #DEDEDE;
+		border-bottom: 1px solid #ccc;
+		padding: 10px 0px 20px 0px;
+	}
+
+#shoes{
+	/*background: rgba(0, 128, 128, 0.6);*/
+	width: 100%;
+	padding-top: 20px;
+	height: 540px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+	.spinner{
+		position: relative;
+		top: 100px;
+		left: 500px;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 30px;
+		font-family: GalaxiePolarisCondensed-Bold;
+	}
+	#shoes::-webkit-scrollbar {
+    	display: none;
+	}
+
+	#shoebox{
+		margin: 0px 0px 50px 20px;
+
+	}
+
+	.shoe{
+		float: left;
+		height: 230px;
+		width: 230px;
+		/*border: thin solid lime;*/
+		margin: 5px 8px;
+		padding: 0px 10px;
+/*		-webkit-box-shadow: 2px 2px 10px 3px rgba(0,0,0,0.57);
+		-moz-box-shadow: 2px 2px 10px 3px rgba(0,0,0,0.57);
+		box-shadow: 2px 2px 10px 3px rgba(0,0,0,0.57);
+
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;*/
+
+		border: 1px solid #ccc;
+
+	}
+
+	.male{ color: blue; }
+	.female{ color: #FF00BF;}
+	.gendericon{ position: relative; top: 10px; left: 0px; }
+	h3.name{ padding-left: 20px; font-size: 18px; position: relative; bottom: 28px; font-family: GalaxiePolarisCondensed-Med; text-transform: uppercase; }
+	h4{ font-family: GalaxiePolarisCondensed-Med; text-transform: uppercase; padding-top: 10px; }
+	h4.modal-title{ font-size: 35px;}
+	.shoe-image{ width: 130px; height: 130px; margin: 30px auto; display: block;}
+
+	/* shoes properties */
+	/*.brand, .gender, .activity, .surface, .strike { display: none; }*/
+	.meta{ font-size: 11px; }
+	.hidden{ display: hidden; }
+
+#bottombar{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 100px;
+	/*background: rgba(0, 0, 128, 0.6);*/
+	background-color: #333;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	overflow:hidden;
+}
+
+	#bottombar ul{
+		color: #fff;
+		position: relative;
+		top: 10px;
+		left: 10px;
+	}
+
+	#bottombar ul li{
+		float: left; display: inline;
+		height: 80px;
+		width: 150px;
+		margin-right: 20px;
+		background-color: #fff;
+		text-algin: center;
+
+	}
+
+	#bottombar ul li a.quicklistlink{
+		height: 100%;
+		width: 100%;
+		color: #fff; font-size:10px;
+	}
+
+	.removeButton{
+		display: block;
+		font-size: 40px !important;
+		position: relative;
+		top: -65px;
+		left: 125px;
+		color: #c00;
+		height: 40px;
+		width: 40px;
+	}
+
+	a.removeButton:hover{
+		color: #f00;
+	}
+
+
+.hiddenStepInfo {
+    display: none;
+}
+
+.activeStepInfo {
+/*	height: 70px;*/
+	background: transparent;
+    display: block !important;
+	border-radius: 0 !important;
+}
+
+
+
+.step {
+
+}
+
+.step {
+    text-align: center;
+}
+
+.step .col-md-2 {
+    background-color: #333;
+    height: 70px;
+    color: #fff;
+    font-size: 10px;
+}
+
+.step img{
+	padding-top: 15px;
+}
+
+.step .col-md-2:hover {
+    background-color: #666;
+    cursor: pointer;
+}
+
+.step .activestep {
+
+    background-color: #666;
+  /*  height: 100px;*/
+
+/*    margin-top: -7px;
+    padding-top: 7px;*/
+/*    border-left: 6px solid #5CB85C !important;
+    border-right: 6px solid #5CB85C !important;
+    border-top: 3px solid #5CB85C !important;
+    border-bottom: 3px solid #5CB85C !important;*/
+    vertical-align: central;
+}
+
+.step .fa {
+/*    padding-top: 15px;
+    font-size: 40px;*/
+}
+
+.grey{ color: #666;}
+#brandlist {list-style: none; }
+#brandlist li{ float: left; }
+
+.btn-group button{ border-radius: 0 !important; }
+button, .modal-content, .btn{ border-radius: 0 !important; }
+
+
+/*.modal {
+display: block;
+}*/
+
+.modal-body {
+    position: relative;
+    padding: 20px;
+    min-width: 1000px !important;  /* SET THE WIDTH OF THE MODAL */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+    background-clip: padding-box;
+    width: 1100px !important; /* SET THE WIDTH OF THE MODAL */
+    margin: 50px 0 0 -250px !important; /* CHANGE MARGINS TO ACCOMMODATE THE NEW WIDTH */
+}
+
+
+.modal-title{ font-family: GalaxiePolarisCondensed-Med; text-transform: uppercase; }

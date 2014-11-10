@@ -1,0 +1,338 @@
+<html ng-app="footwearApp">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Footwear Advisor</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+    </head>
+
+    <body>
+
+        <div id="stage" ng-controller='ProductsCtrl'>
+            <div id="topbar">
+
+<!--                 <div class="row">
+                    <div class="progress" id="progress1">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                        </div>
+                        <span class="progress-type">Overall Progress</span>
+                        <span class="progress-completed">20%</span>
+                    </div>
+                </div>     -->
+
+                <div id="steps">
+
+
+                  <!--   <div class="row"> -->
+                        <div class="row step">
+                            <div id="div1" class="col-md-2" onclick="javascript: resetActive(event, 0, 'step-1');">
+                                <img src="images/buttons/gender.png" />
+                            </div>
+                            <div class="col-md-2" onclick="javascript: resetActive(event, 25, 'step-2');">
+                                 <img src="images/buttons/sport.png" />
+                            </div>
+                            <div class="col-md-2" onclick="javascript: resetActive(event, 50, 'step-3');">
+                                <img src="images/buttons/surfaces.png" />
+                            </div>
+                            <div class="col-md-2" onclick="javascript: resetActive(event, 75, 'step-4');">
+                                <img src="images/buttons/brand.png" />
+
+                            </div>
+
+                            <div class="col-md-2" data-toggle="modal" data-target="#session-refresh">
+                                <span style="font-size: 40px; padding-top: 10px;" class="fa fa-refresh"></span>
+                            </div>
+<!--                             <div class="col-md-2" onclick="javascript: resetActive(event, 80, 'step-5');">
+                                <span class="fa fa-cloud-upload"></span>
+                                <p>Something</p>
+                            </div> -->
+                            <!-- <div id="last" class="col-md-2" onclick="javascript: resetActive(event, 100, 'step-6');">
+                                <span class="fa fa-star"></span>
+                                <p>Something</p>
+                            </div> -->
+
+							<img src="images/sc.png" style="position: relative; left: 0px;" />
+                        </div>
+     <!--                </div> -->
+
+                </div>
+
+<!--
+                <div class="row">
+                    <div class="progress" id="progress1">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                    </div>
+                </div>
+-->
+                <div id="step-detail">
+
+                    <div class="row setup-content step hiddenStepInfo" id="step-1">
+                        <div class="col-xs-12">
+                            <div class="col-md-12 text-center">
+
+     							<div class="btn-group btn-group-lg">
+                                  <!-- <button type="button" class="btn btn-default">Show All</button> -->
+								  <button type="button" class="btn btn-default" ng-click="setGender('male')"><span class="fa fa-male"></span>  Men's</button>
+								  <button type="button" class="btn btn-default" ng-click="setGender('female')"><span class="fa fa-female"></span>  Women's</button>
+                                  <button type="button" ng-click="setGender('')" class="btn btn-default btn-warning"><span class="fa fa-times"></span>  Both</button>
+								</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row setup-content step hiddenStepInfo" id="step-2">
+                        <div class="col-xs-12">
+                            <div class="col-md-12 text-center">
+                                <div class="btn-group btn-group-lg" ng-controller='SportListCtrl'>
+                                   <button ng-repeat='sport in sports' type="button" ng-click="setSport(sport.sport)" class="btn btn-default">{{ sport.sport }}</button>
+                                   <button type="button" ng-click="setSport('')" class="btn btn-default btn-warning"><span class="fa fa-times"></span>  Show All Sports</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row setup-content step hiddenStepInfo" id="step-3">
+                        <div class="col-xs-12">
+                            <div class="col-md-12 text-center">
+
+     							<div class="btn-group btn-group-lg" ng-controller='SurfaceListCtrl'>
+                                    <button ng-repeat='surface in surfaces' type="button" ng-click="setSurface(surface.surface)" class="btn btn-default">{{ surface.surface }}</button>
+                                    <button type="button" ng-click="setSurface('')" class="btn btn-default btn-warning"><span class="fa fa-times"></span>  Show All Surfaces</button>
+								</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row setup-content step hiddenStepInfo" id="step-4">
+                        <div class="col-xs-12">
+                            <div class="col-md-12 text-center">
+
+								<div class="btn-group" ng-controller='BrandListCtrl'>
+								  <button ng-repeat='brand in brands' type="button" ng-click="setBrand(brand.brand)" class="btn btn-default">{{ brand.brand }}</button>
+                                  <button type="button" ng-click="setBrand('')" class="btn btn-default btn-warning"><span class="fa fa-times"></span>  Show All Brands</button>
+								</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div id="shoes">
+
+                <div id="shoebox">
+					<span class="spinner" data-ng-show="loading">Loading ...<br /><img src="images/square_loader.gif" /></span>
+                    <span class="spinner" data-ng-show="noresults">No Shoes Match that Criteria <br /><br /><button type="button" class="btn btn-lg btn-default" onclick="javacript: document.location.reload(true);"><span class="fa fa-refresh fa-spin"></span>&nbsp;&nbsp; START OVER?</button> </span>
+                    <span class="spinner" data-ng-show="nonetwork">Please check your network connection</span>
+
+                    <div ng-repeat='shoe in shoes' class="shoe" data-toggle="modal" data-target="#shoe-detail-{{shoe.style}}">
+
+                                <span class="gendericon fa fa-{{shoe.gender}} {{shoe.gender}}"></span>
+                                <h3 class="name">{{shoe.name}}</h3>
+								<center>
+								<img src="http://footwearpcs.thecompleteexperience.ca/images/shoes/small/{{shoe.style}}_99_a.jpg">
+								</center>
+                                <div class="hidden gender">{{shoe.gender}}</div>
+                                <div class="hidden brand">{{shoe.brand}}</div>
+                                <div class="hidden sport">{{shoe.sport}}</div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="shoe-detail-{{shoe.style}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <!-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
+                                <h4 class="modal-title" id="myModalLabel">{{shoe.name}}</h4>
+                              </div>
+                              <div class="modal-body">
+
+								<div class="row">
+									<div class="col-md-6">
+										<img src="http://footwearpcs.thecompleteexperience.ca/images/shoes/large/{{shoe.style}}_99_a.jpg">
+									</div>
+
+									<div class="col-md-6" style="padding-left: 40px;">
+										<h4>Description</h4>
+    									<p>{{ shoe.description }}</p>
+
+										<h4><strong>Features &amp; Benefits</strong></h4>
+										<ul style="padding-left: 20px;">
+											<li>{{ shoe.feature1 }}</li>
+											<li>{{ shoe.feature2 }}</li>
+											<li>{{ shoe.feature3 }}</li>
+										</ul>
+
+										<h4><strong>Sports &amp; Activities</strong></h4>
+										<span><span class="grey fa fa-tag"></span> {{ shoe.sport }}</span>&nbsp;&nbsp;&nbsp;
+
+										<h4><strong>Surfaces</strong></h4>
+										<span><span class="grey fa fa-tag"></span> {{ shoe.surface }}</span>&nbsp;&nbsp;&nbsp;
+
+									</div>
+								</div>
+
+
+                              </div>
+                              <div class="modal-footer">
+
+                                <!-- <button type="button" ng-click="addItem( '{{ shoe.style }}', '{{ shoe.Title }}' )" class="btn btn-lg btn-default"><span class="fa fa-thumb-tack"></span>  Add to List</button> -->
+                                <button type="button" ng-click='addItem( shoe.style, shoe.Title )' class="btn btn-lg btn-default"><span class="fa fa-thumb-tack"></span>  Add to List</button>
+                                <button type="button" class="btn btn-lg btn-default">Close</button>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                       <!--  <img class="" src="http://calpcs1wb01.fglsports.com/nas_organized/product_images/{{shoe.style}}/{{shoe.style}}_99_a.png.thumb.png" />     -->
+                        <!-- <p class="meta brand"><b>Brand:</b> {{shoe.Brand}}</p>  -->
+
+                        <!--
+                        <p class="meta activity"><b>Activity:</b></p>
+                        <p class="meta surface"><b>Surface:</b></p>
+                        <p class="meta strike"><b>Strike:</b></p>
+                        -->
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="bottombar">
+                <ul>
+                    <li ng-repeat="item in items"><a class="quicklistlink" data-toggle="modal" data-target="#shoe-detail-{{item.style}}" href="#"><center><img style="position:relative; top: 20px;" height="70%" width="70%" src="http://footwearpcs.thecompleteexperience.ca/images/shoes/small/{{item.style}}_99_a.jpg" /></a></center><a href="#" ng-click="removeItem($index)" class="removeButton"><span class="fa fa-times-circle"></span></a></li>
+                </ul>
+
+            </div>
+        </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="session-refresh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span></button> -->
+        <h4 class="modal-title" id="myModalLabel">Reset this session?</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-lg btn-block btn-default" onclick="javacript: document.location.reload(true);"><br /><span class="fa fa-refresh fa-spin"></span>&nbsp;&nbsp; RESET!<br /><br /></button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-lg btn-block btn-default" data-dismiss="modal"><br /><span class="fa fa-warning"></span>&nbsp;&nbsp; NO, I'M NOT DONE YET.<br /><br /></button>
+            </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end refresh modal -->
+
+
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/app/bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="/js/jquery.isotope.js"></script>
+<!-- <script type="text/javascript" src="/js/ui-bootstrap-0.9.0.js"></script> -->
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+        <script>
+			
+            // $( function() {
+            //   // init Isotope
+            //   var $container = $('#shoebox').isotope({
+            //     itemSelector: '.shoe',
+            //     layoutMode: 'fitRows'
+            //   });
+            //   // filter functions
+            //   var filterFns = {
+            //     // show if number is greater than 50
+            //     numberGreaterThan50: function() {
+            //       var number = $(this).find('.number').text();
+            //       return parseInt( number, 10 ) > 50;
+            //     },
+            //     // show if name ends with -ium
+            //     ium: function() {
+            //       alert('click');
+            //       var brand = $(this).find('.brand').text();
+            //       return name.match( /AS$/ );
+            //     }
+            //   };
+
+            //   // bind filter button click
+            //   $('#filters').on( 'click', 'button', function() {
+            //     var filterValue = $( this ).attr('data-filter');
+            //     // use filterFn if matches value
+            //     filterValue = filterFns[ filterValue ] || filterValue;
+            //     $container.isotope({ filter: filterValue });
+            //   });
+
+            //   // change is-checked class on buttons
+            //   $('.button-group').each( function( i, buttonGroup ) {
+            //     var $buttonGroup = $( buttonGroup );
+            //     $buttonGroup.on( 'click', 'button', function() {
+            //       $buttonGroup.find('.is-checked').removeClass('is-checked');
+            //       $( this ).addClass('is-checked');
+            //     });
+            //   });
+
+            // });
+            function resetActive(event, percent, step) {
+                $(".progress-bar").css("width", percent + "%").attr("aria-valuenow", percent);
+                $(".progress-completed").text(percent + "%");
+
+                $("div").each(function () {
+                    if ($(this).hasClass("activestep")) {
+                        $(this).removeClass("activestep");
+                    }
+                });
+
+                if (event.target.className == "col-md-2") {
+                    $(event.target).addClass("activestep");
+                }
+                else {
+                    $(event.target.parentNode).addClass("activestep");
+                }
+
+                hideSteps();
+                showCurrentStepInfo(step);
+            }
+
+            function hideSteps() {
+                $("div").each(function () {
+                    if ($(this).hasClass("activeStepInfo")) {
+                        $(this).removeClass("activeStepInfo");
+                        $(this).addClass("hiddenStepInfo");
+                    }
+                });
+            }
+
+            function showCurrentStepInfo(step) {
+                var id = "#" + step;
+                $(id).addClass("activeStepInfo");
+            }
+
+
+        </script>
+    </body>
+
+
+</html>
